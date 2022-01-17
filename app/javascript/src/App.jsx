@@ -7,6 +7,7 @@ import { initializeLogger } from "common/logger";
 import Dashboard from "components/Dashboard";
 import PageLoader from "components/PageLoader";
 import CreateTask from "components/Tasks/CreateTask";
+import EditTask from "components/Tasks/EditTask";
 import ShowTask from "components/Tasks/ShowTask";
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
+        <Route exact path="/tasks/:slug/edit" component={EditTask} />
         <Route exact path="/tasks/:slug/show" component={ShowTask} />
         <Route exact path="/tasks/create" component={CreateTask} />
         <Route exact path="/dashboard" component={Dashboard} />
