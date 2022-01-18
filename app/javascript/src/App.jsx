@@ -39,7 +39,6 @@ const App = () => {
         <Route exact path="/tasks/:slug/edit" component={EditTask} />
         <Route exact path="/tasks/:slug/show" component={ShowTask} />
         <Route exact path="/tasks/create" component={CreateTask} />
-        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
         <PrivateRoute
