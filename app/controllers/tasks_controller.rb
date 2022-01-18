@@ -10,8 +10,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    if @task.save
+    task = current_user.created_tasks.new(task_params)
+    if task.save
       render status: :ok, json: { notice: t("successfully_created", entity: "Task") }
     else
       error = task.errors.full_messages.to_sentence
