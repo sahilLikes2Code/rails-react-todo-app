@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  enum status: { unstarred: 0, starred: 1 }
-  RESTRICTED_ATTRIBUTES = %i[title task_owner_id assigned_user_id]
   MAX_TITLE_LENGTH = 125
-  enum progress: { pending: 0, completed: 1 }
-  has_many :comments, dependent: :destroy
+  RESTRICTED_ATTRIBUTES = %i[title task_owner_id assigned_user_id]
 
+  enum progress: { pending: 0, completed: 1 }
+  enum status: { unstarred: 0, starred: 1 }
+
+  has_many :comments, dependent: :destroy
   belongs_to :assigned_user, foreign_key: "assigned_user_id", class_name: "User"
   belongs_to :task_owner, foreign_key: "task_owner_id", class_name: "User"
 
