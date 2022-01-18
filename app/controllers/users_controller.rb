@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       render status: :ok, json: { notice: t("successfully_created", entity: "User") }
     else
-      render status: unprocessable_entity, json: { error: @user.errors.full_messages.to_sentence }
+      render status: :unprocessable_entity, json: { error: @user.errors.full_messages.to_sentence }
     end
   end
 
