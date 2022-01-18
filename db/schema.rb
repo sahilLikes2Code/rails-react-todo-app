@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_103615) do
+ActiveRecord::Schema.define(version: 2022_01_18_111116) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_103615) do
     t.integer "assigned_user_id"
     t.integer "task_owner_id"
     t.integer "progress", default: 0, null: false
+    t.integer "status", default: 0, null: false
     t.index ["slug"], name: "index_tasks_on_slug", unique: true
   end
 
