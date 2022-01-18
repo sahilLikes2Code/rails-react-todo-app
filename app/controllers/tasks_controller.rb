@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
   before_action :authenticate_user_using_x_auth_token, except: [:new, :edit]
   before_action :load_task, only: %i[show update destroy]
 
   def index
-    tasks = Task.all.as_json(include: { assigned_user: { only: %i[name id] } })
-    render status: :ok, json: { tasks: tasks }
+    tasks = policy_scope(Task)
+    tasks_with_assigned_user = tasks.as_json(include: { assigned_user: { only: %i[name id] } })
+    render status: :ok, json: { tasks: tasks_with_assigned_user }
   end
 
   def create
     task = current_user.created_tasks.new(task_params)
+    authorize task
     if task.save
       render status: :ok, json: { notice: t("successfully_created", entity: "Task") }
     else
@@ -20,10 +24,11 @@ class TasksController < ApplicationController
   end
 
   def show
-    render
+    authorize @task
   end
 
   def update
+    authorize @task
     if @task.update(task_params)
       render status: :ok, json: { notice: "Task updated successfully" }
     else
@@ -32,6 +37,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    authorize @task
     if @task.destroy
       render status: :ok, json: { notice: "Task deleted successfully" }
     else
