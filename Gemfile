@@ -9,8 +9,7 @@ ruby "3.0.2"
 gem "react-rails"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1.4", ">= 6.1.4.1"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+
 # Use Puma as the app server
 gem "puma", "~> 5.0"
 # Use SCSS for stylesheets
@@ -35,6 +34,7 @@ gem "pundit"
 gem "ruby_audit", require: false
 gem "sidekiq"
 # For periodic sidekiq jobs
+gem "pg"
 gem "sidekiq-cron"
 
 group :development, :test do
@@ -67,6 +67,8 @@ group :development, :test do
 
   # For auto-generating demo data
   gem "faker"
+  # Use sqlite3 as the database for Active Record
+  gem "sqlite3", "~> 1.4"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
