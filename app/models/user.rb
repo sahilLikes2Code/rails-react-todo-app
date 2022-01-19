@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :email, presence: true,
-  uniqueness: { case_sensitive: false },
-  length: { maximum: MAX_EMAIL_LENGTH },
-  format: { with: VALID_EMAIL_REGEX }
+    uniqueness: { case_sensitive: false },
+    length: { maximum: MAX_EMAIL_LENGTH },
+    format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { maximum: MAX_NAME_LENGTH }
   validates :password, length: { minimum: 6 }, if: -> { password.present? }
   validates :password_confirmation, presence: true, on: :create
