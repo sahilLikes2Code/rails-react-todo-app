@@ -15,6 +15,7 @@ class Task < ApplicationRecord
   validates :slug, uniqueness: true
   validate :slug_not_changed
 
+  after_create :log_task_details
   before_create :set_slug
 
   private
@@ -53,5 +54,9 @@ class Task < ApplicationRecord
         unstarred = completed.unstarred.order("updated_at DESC")
       end
       starred + unstarred
-  end
+    end
+
+    def log_task_details
+      TaskLoggerJob.perform_later(self)
+    end
 end

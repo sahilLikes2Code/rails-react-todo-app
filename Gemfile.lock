@@ -160,6 +160,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    redis (4.5.1)
     regexp_parser (2.2.0)
     rexml (3.2.5)
     rubocop (1.25.0)
@@ -191,6 +192,10 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
+    sidekiq (6.3.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     spring (4.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -241,6 +246,7 @@ DEPENDENCIES
   rubocop-rails
   ruby_audit
   sass-rails (>= 6)
+  sidekiq
   spring
   sqlite3 (~> 1.4)
   tzinfo-data
