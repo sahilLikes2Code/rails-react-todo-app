@@ -8,6 +8,8 @@ const Input = ({
   label,
   value,
   onChange,
+  min,
+  max,
   placeholder,
   disabled = false,
   required = true,
@@ -26,6 +28,8 @@ const Input = ({
           required={required}
           value={value}
           onChange={onChange}
+          min={min}
+          max={max}
           placeholder={placeholder}
           disabled={disabled}
           className={classnames(
@@ -45,6 +49,8 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  min: PropTypes.number,
+  max: PropTypes.number,
 };
 
 export default Input;
